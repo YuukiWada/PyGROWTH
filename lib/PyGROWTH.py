@@ -198,7 +198,7 @@ class pipeline:
         gps_unixtime = np.array(gps["unixTime"],dtype=np.uint64)
         gps_string = gps["gpsTime"]
         gps_string_select = []
-        gps_select = np.ones(gps_timetag.shape, dtype=np.bool)*True
+        gps_select = np.full(gps_timetag.shape,True)
         gps_string_select.append(gps_string[0])
         if (gps_string[0].split("\s")[0]=="GP") or (gps_string[0].split("\s")[0]==""):
             return 0

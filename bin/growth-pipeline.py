@@ -137,7 +137,6 @@ elif process_type=="process":
         fits.timing_cal()
 
         # Write fits file
-        print(fits.trigger_count)
         output_file = "{}/{}".format(lv2_dir,os.path.basename(input_file))
         primary_hdu = fits.f[0]
         ecol1 = fitsio.Column(name="boadIndexAndChannel", format="B", array=fits.adc_channel)
