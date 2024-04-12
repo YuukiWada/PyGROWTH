@@ -19,6 +19,11 @@ process_name = current_dir.split("/")[-1]
 fiscal_year = current_dir.split("/")[-2]
 det_id = current_dir.split("/")[-3]
 
+if len(sys.argv)<2:
+    print("Usage: growth-pipeline.py ql [list file]")
+    print("Usage: growth-pipeline.py process <configuration file> [list file]")
+    exit()
+    
 process_type = sys.argv[1]
 
 if process_type=="ql":
@@ -204,5 +209,6 @@ elif process_type=="process":
             plt.clf()
 
 else:
-    print("Error: Mode should be 'ql' or 'process'.")
+    print("Usage: growth-pipeline.py ql [list file]")
+    print("Usage: growth-pipeline.py process <configuration file> [list file]")
     exit()
