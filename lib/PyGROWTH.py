@@ -201,6 +201,9 @@ class pipeline:
         gps_select = np.full(gps_timetag.shape,True)
         gps_string_select.append(gps_string[0])
         if (gps_string[0].split("\s")[0]=="GP") or (gps_string[0].split("\s")[0]==""):
+            self.gps_timetag = gps_timetag
+            self.gps_unixtime = gps_unixtime
+            self.gps_string = gps_string_select
             return 0
         for i in range(gps_timetag.shape[0]-1):
             if gps_string[i+1].split("\s")[0]=="":
@@ -212,6 +215,9 @@ class pipeline:
         gps_timetag = gps_timetag[gps_select]
         gps_unixtime = gps_unixtime[gps_select]
         if gps_timetag.shape[0]<3:
+            self.gps_timetag = gps_timetag
+            self.gps_unixtime = gps_unixtime
+            self.gps_string = gps_string_select
             return 0
         time_string = gps_string_select[0][8:14]
         start_time = dt.datetime.fromtimestamp(gps_unixtime[0])
