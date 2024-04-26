@@ -41,8 +41,10 @@ if process_type=="ql":
     work_dir = "{}_work".format(process_name)
     os.makedirs(work_dir, exist_ok=True)
     products_dir = "{}_work/products/".format(process_name)
-    os.makedirs(products_dir, exist_ok=True) 
+    os.makedirs(products_dir, exist_ok=True)
     fits = pipeline(file_list[0])
+    if fits.error:
+        exit()
     fits.ql_spec(products_dir)
     fits.close()
         

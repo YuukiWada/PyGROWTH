@@ -25,9 +25,10 @@ class pipeline:
             self.initial_selection(event)
             self.calc_duration()
             self.pipeline_ver = "PyGROWTH Ver.1.0"
-        except:
+        except Exception as e:
             self.error = True
             print("Error: {} is broken or not a FITS file.".format(input_file))
+            print(e)
             
     def close(self):
         self.f.close()
