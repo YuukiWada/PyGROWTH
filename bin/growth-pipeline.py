@@ -146,7 +146,7 @@ elif process_type=="process":
         # Write fits file
         output_file = "{}/{}".format(lv2_dir,os.path.basename(input_file))
         primary_hdu = fits.f[0]
-        ecol1 = fitsio.Column(name="boadIndexAndChannel", format="B", array=fits.adc_channel)
+        ecol1 = fitsio.Column(name="boardIndexAndChannel", format="B", array=fits.adc_channel)
         ecol2 = fitsio.Column(name="timeTag", format="K", array=fits.time_tag)
         ecol3 = fitsio.Column(name="triggerCount", format="J", array=fits.trigger_count)
         ecol4 = fitsio.Column(name="phaMax", format="I", array=fits.pha_max)
