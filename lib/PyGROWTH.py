@@ -86,6 +86,10 @@ class pipeline:
             plt.ylabel("Counts/bin")
             plt.yscale("log")
             plt.xlim(-0.5, 500.5)
+            plt.grid(axis="x")
+            plt.xticks(np.arange(0,500+1,25))
+            #plt.tick_params(labelsize=10)
+            plt.tick_params(labelsize=8)
             plt.savefig(output_file)
             plt.clf()
 
@@ -117,7 +121,7 @@ class pipeline:
                 fit_range = [pre_peak[i]-pre_sigma[i]*fit_range_const[0],pre_peak[i]+pre_sigma[i]*fit_range_const[1]]
                 hist_sel = hist[(bins>=fit_range[0])&(bins<=fit_range[1])]
                 bins_sel = bins[(bins>=fit_range[0])&(bins<=fit_range[1])]
-                popt,pocv = curve_fit(gaussian, bins_sel, hist_sel, p0=[pre_norm[i],pre_peak[i],pre_sigma[i]], maxfev=50000)
+                popt,pocv = curve_fit(gaussian, bins_sel, hist_sel, p0=[pre_norm[i],pre_peak[i],pre_sigma[i]], maxfev=500000)
                 if plot:
                     plt.plot(bins_sel,gaussian(bins_sel,popt[0],popt[1],popt[2]))
 
@@ -125,7 +129,7 @@ class pipeline:
                 fit_range = [popt[1]-popt[2]*fit_range_const[0],popt[1]+popt[2]*fit_range_const[1]]
                 hist_sel = hist[(bins>=fit_range[0])&(bins<=fit_range[1])]
                 bins_sel = bins[(bins>=fit_range[0])&(bins<=fit_range[1])]
-                popt,pocv = curve_fit(gaussian, bins_sel, hist_sel, p0=popt, maxfev=50000)
+                popt,pocv = curve_fit(gaussian, bins_sel, hist_sel, p0=popt, maxfev=500000)
                 if plot:
                     plt.plot(bins_sel,gaussian(bins_sel,popt[0],popt[1],popt[2]))
                 norm[i] = popt[0]
